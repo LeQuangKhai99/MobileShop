@@ -111,6 +111,7 @@ namespace MobileShop.Areas.Admin.Controllers
             return View();
         }
 
+
         [HttpGet]
         public ActionResult Delete(int id)
         {
