@@ -58,8 +58,15 @@ namespace Model.Dao
             {
                 var c = db.Categories.Find(cate.ID);
                 c.Name = cate.Name;
-                c.ParentID = cate.ParentID;
                 c.MetaTitle = cate.MetaTitle;
+                if(cate.Image == "/Assets/client/images/")
+                {
+                    c.Image = c.Image;
+                }
+                else
+                {
+                    c.Image = cate.Image;
+                }
                 c.Status = cate.Status;
                 db.SaveChanges();
                 return true;

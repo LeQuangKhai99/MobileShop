@@ -28,6 +28,8 @@ namespace Model.EF
 
         public bool? Status { get; set; }
 
+        public int Level { set; get; }
+
         public DateTime? CreatedDate { get; set; }
     }
 }

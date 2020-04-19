@@ -28,8 +28,9 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Meta Title</th>
-                        <th>Parent ID</th>
+                        <th>Image</th>
                         <th>Status</th>
+                        <th>Created Date</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
@@ -41,11 +42,14 @@
                             <td>@item.ID</td>
                             <td>@item.Name</td>
                             <td>@item.MetaTitle</td>
-                            <td>@item.ParentID</td>
-                            <td>@(item.Status == true ? "Kích Hoạt" : "Khóa")</td>
                             <td>
-                                <a href="#" type="button" class="btn btn-success">Cập Nhật</a>
-                                <a href="#" type="button" class="btn btn-danger">Xóa</a>
+                                <img style="width: 150px; height: 150px;" src="@item.Image" />
+                            </td>
+                            <td>@(item.Status == true ? "Kích Hoạt" : "Khóa")</td>
+                            <td>@item.CreatedDate</td>
+                            <td>
+                                <a href="/Admin/Cate/Update/@item.ID" type="button" class="btn btn-success">Cập Nhật</a>
+                                <a onclick="return confirm('Bạn có chắc muốn xóa?')" href="/Admin/Cate/Delete/@item.ID" type="button" class="btn btn-danger">Xóa</a>
                             </td>
                         </tr>
                     }

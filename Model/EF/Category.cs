@@ -19,8 +19,8 @@
 
         [StringLength(100)]
         public string MetaTitle { get; set; }
-        [Required(ErrorMessage = "Hãy điền ID Parent")]
-        public long? ParentID { get; set; }
+
+        public string Image { set; get; }
 
         public bool Status { get; set; }
 
