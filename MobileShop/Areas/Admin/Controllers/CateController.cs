@@ -40,6 +40,7 @@ namespace MobileShop.Areas.Admin.Controllers
                 if (isIsset)
                 {
                     ModelState.AddModelError("", "Loại sản phẩm này đã tồn tại");
+                    return View();
                 }
                 else
                 {
@@ -51,21 +52,32 @@ namespace MobileShop.Areas.Admin.Controllers
                         {
                             string folderPath = Path.Combine(Server.MapPath("/Assets/client/images"), fileName);
                             image.SaveAs(folderPath);
-                            
+                            cate.MetaTitle = Slug.ConvertToUnSign(cate.Name);
+                            cate.CreatedDate = DateTime.Now;
+                            cate.Image = "/Assets/client/images/" + fileName;
+                            dao.Insert(cate);
+                            TempData["Success"] = "Thêm loại sản phẩm thành công!";
+                            return RedirectToAction("Index");
                         }
                         else
                         {
                             ModelState.AddModelError("", "File hình ảnh chưa phù hợp!");
+                            return View();
                         }
                     }
                     else
                     {
                         ModelState.AddModelError("", "Chưa chọn hình ảnh!");
+                        return View();
                     }
-                    
+
                 }
             }
-            return View();
+            else
+            {
+                return View();
+            }
+            
         }
 
         [HttpGet]

@@ -84,6 +84,12 @@ namespace MobileShop.Areas.Admin.Controllers
             ViewBag.CategoryID = new SelectList(dao.GetListCate(), "ID", "Name", id);
         }
 
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
+        }
+
         [HttpGet]
         public ActionResult Delete(int id)
         {

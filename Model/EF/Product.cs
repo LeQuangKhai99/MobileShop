@@ -27,12 +27,10 @@
         public string MetaTitle { get; set; }
 
         [Display(Name = "Giá gốc")]
-        [RegularExpression("[\\d]", ErrorMessage ="Sai kiểu giá trị")]
         [Required(ErrorMessage = "Hãy nhập giá gốc của sản phẩm")]
         public decimal? Price { get; set; }
 
         [Display(Name = "Giá khuyến mãi")]
-        [RegularExpression("[\\d]", ErrorMessage = "Sai kiểu giá trị")]
         [Required(ErrorMessage = "Hãy nhập giá khuyến mãi của sản phẩm")]
         public decimal? PromotionPrice { get; set; }
 
