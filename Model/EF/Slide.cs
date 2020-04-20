@@ -1,4 +1,4 @@
-namespace Model.EF
+﻿namespace Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -12,12 +12,15 @@ namespace Model.EF
         public long ID { get; set; }
 
         [StringLength(250)]
+        [Display(Name = "Hình ảnh")]
         public string Image { get; set; }
 
         [StringLength(250)]
+        [Display(Name = "Link")]
+        [Required(ErrorMessage = "Bạn chưa nhập link")]
         public string Link { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 
