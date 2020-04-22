@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Model.EF.Product> products = ViewBag.products;
+    List<Model.EF.Product> promotion_product = ViewBag.promotion_product;
+    List<Model.EF.Product> cheap_product = ViewBag.cheap_product;
+    List<Model.EF.Product> new_product = ViewBag.new_product;
+}
+
+@{Html.RenderAction("_Slide", "Home"); }
+
+<div class="promo-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo1">
+                    <i class="fa fa-refresh"></i>
+                    <p>Đổi trả trong 30 ngày</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo2">
+                    <i class="fa fa-truck"></i>
+                    <p>Giao hàng miễn phí</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo3">
+                    <i class="fa fa-lock"></i>
+                    <p>Thanh toán bảo mật</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo4">
+                    <i class="fa fa-gift"></i>
+                    <p>Quà tặng hấp dẫn</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End promo area -->
+
+<div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="latest-product">
+                    <h2 class="section-title">Sản Phẩm Mới Nhất</h2>
+                    <div class="product-carousel">
+                        @foreach (var item in products)
+                        {
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="@item.Image" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Mua sản phẩm</a>
+                                        <a href="/chi-tiet/@item.MetaTitle-@item.ID" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
+                                    </div>
+                                </div>
+
+                                <h2><a href="/chi-tiet/@item.MetaTitle-@item.ID">@item.Name</a></h2>
+
+                                <div class="product-carousel-price">
+                                    <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End main content area -->
+
+@{ Html.RenderAction("_Brand", "Home"); }
+
+<div class="product-widget-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Sản phẩm khuyến mãi</h2>
+                    @foreach (var item in promotion_product)
+                    {
+                        <div class="single-wid-product">
+                            <a href="/chi-tiet/@item.MetaTitle-@item.ID"><img src="@item.Image" alt="" class="product-thumb"></a>
+                            <h2><a href="/chi-tiet/@item.MetaTitle-@item.ID">@item.Name</a></h2>
+                            <div class="product-wid-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product-wid-price">
+                                <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Sản phẩm giá rẻ</h2>
+                    @foreach (var item in cheap_product)
+                    {
+                        <div class="single-wid-product">
+                            <a href="/chi-tiet/@item.MetaTitle-@item.ID"><img src="@item.Image" alt="" class="product-thumb"></a>
+                            <h2><a href="/chi-tiet/@item.MetaTitle-@item.ID">@item.Name</a></h2>
+                            <div class="product-wid-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product-wid-price">
+                                <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Sản Phẩm mới</h2>
+                    @foreach (var item in new_product)
+                    {
+                        <div class="single-wid-product">
+                            <a href="/chi-tiet/@item.MetaTitle-@item.ID"><img src="@item.Image" alt="" class="product-thumb"></a>
+                            <h2><a href="/chi-tiet/@item.MetaTitle-@item.ID">@item.Name</a></h2>
+                            <div class="product-wid-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product-wid-price">
+                                <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End product widget area -->

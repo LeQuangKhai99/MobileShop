@@ -1,0 +1,94 @@
+﻿@model List<Model.EF.Product>
+@{
+    ViewBag.Title = "Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int totalPage = ViewBag.totalPage;
+    int page = ViewBag.page;
+    if (page > totalPage)
+    {
+        page = 1;
+    }
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>@ViewBag.cate</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img style="width: 195px; height: 243px;" src="@item.Image" alt="@item.Name">
+                        </div>
+                        <h2><a href="/chi-tiet/@item.MetaTitle-@item.ID">@item.Name</a></h2>
+                        <div class="product-carousel-price">
+                            <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
+                        </div>
+
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-pagination text-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            @{
+                                string url = @ViewBag.url + "?page=";
+                                int next = page + 1;
+                                int pre = page - 1;
+                            }
+                            @if (totalPage == 1)
+                            {
+
+                                <li class="page-item"><a class="active page-link" href="#">@page</a></li>
+                            }
+                            else
+                            {
+                                if (totalPage != page)
+                                {
+                                    if (page == 1)
+                                    {
+                                        <li class="page-item"><a class="page-link active" href="#">@page</a></li>
+                                        <li class="page-item"><a class="page-link" href="@url@next">Next</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item"><a class="page-link" href="@url@pre">Previous</a></li>
+                                        <li class="page-item"><a class="active page-link" href="#">@page</a></li>
+                                        <li class="page-item"><a class="page-link" href="@url@next">Next</a></li>
+                                    }
+                                }
+                                else
+                                {
+                                    <li class="page-item"><a class="page-link" href="@url@pre">Previous</a></li>
+                                    <li class="page-item"><a class="active page-link" href="#">@page</a></li>
+                                }
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

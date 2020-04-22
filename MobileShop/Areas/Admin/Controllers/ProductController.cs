@@ -1,4 +1,5 @@
 ﻿using MobileShop.Common;
+using MobileShop.Controllers;
 using Model.Dao;
 using Model.EF;
 using Model.ViewModel;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 
 namespace MobileShop.Areas.Admin.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         // GET: Admin/Product
         public ActionResult Index()

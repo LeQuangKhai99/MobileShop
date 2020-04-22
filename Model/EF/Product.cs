@@ -21,7 +21,7 @@
         public string Image { get; set; }
 
         [Display(Name = "Loại sản phẩm")]
-        public long? CategoryID { get; set; }
+        public long CategoryID { get; set; }
 
         [StringLength(100)]
         public string MetaTitle { get; set; }

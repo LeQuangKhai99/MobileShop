@@ -1,0 +1,20 @@
+﻿@model List<Model.EF.Category>
+<li class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        <li><a class="main-menu" href="/trang-chu">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a class="main-menu dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">Loại Sản Phẩm
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    @foreach (var item in Model)
+                    {
+                        <li><a href="/san-pham/@item.MetaTitle-@item.ID">@item.Name</a></li>
+                    }
+                </ul>
+            </li>
+
+        <li><a class="main-menu" href="/lien-he">Liên Hệ</a></li>
+        <li><a class="main-menu" href="/gioi-thieu">Giới Thiệu</a></li>
+    </ul>
+</div>

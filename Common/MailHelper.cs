@@ -14,7 +14,7 @@ namespace Common
         public void SendMail(string toEmailAddress, string subject, string content)
         {
             var fromEmailAddress = ConfigurationManager.AppSettings["FromEmailAddress"].ToString();
-            var fromEmailDisplayName = "Tạo tài khoản thành công!";
+            var fromEmailDisplayName = "Mobile Shop";
             var fromEmailPassword = ConfigurationManager.AppSettings["FromEmailPassword"].ToString();
             var smtpHost = ConfigurationManager.AppSettings["SMTPHost"].ToString();
             var smtpPort = ConfigurationManager.AppSettings["SMTPPort"].ToString();

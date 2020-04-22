@@ -20,6 +20,11 @@ namespace Model.Dao
             return db.Slides.OrderByDescending(x => x.CreatedDate).ToList();
         }
 
+        public List<Slide> GetListSlideShow()
+        {
+            return db.Slides.Where(x => x.Status == true).OrderByDescending(x => x.CreatedDate).ToList();
+        }
+
         public bool Insert(Slide slide)
         {
             try

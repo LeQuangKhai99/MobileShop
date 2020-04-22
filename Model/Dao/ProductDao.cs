@@ -111,5 +111,42 @@ namespace Model.Dao
         {
             return db.Products.Where(x => x.ID == id && x.Name == name).Count() > 0;
         }
+
+        public List<Product> ListLatestProduct(int top)
+        {
+            return db.Products.Where(x => x.Status == true).OrderByDescending(x => x.CreatedDate).Take(top).ToList();
+        }
+
+        public List<Product> Get3PromotionProduct(int top)
+        {
+            return db.Products.Where(x => x.Status == true && x.PromotionPrice != null).OrderByDescending(x => x.CreatedDate).Take(top).ToList();
+        }
+
+        public List<Product> Get3CheapProduct(int top)
+        {
+            return db.Products.Where(x => x.Status == true).OrderBy(x => x.PromotionPrice).Take(top).ToList();
+        }
+
+        public List<Product> Get3NewProduct(int top)
+        {
+            return db.Products.Where(x => x.Status == true).OrderBy(x => x.CreatedDate).Take(top).ToList();
+        }
+
+        public List<Product> GetListProductByCateID(int id, ref int total, int pageIndex = 1, int pageSize = 6)
+        {
+            total = db.Products.Where(x => x.Status == true && x.CategoryID == id).Count();
+            return db.Products.Where(x => x.Status == true && x.CategoryID == id).OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        }
+
+        public Product GetProductByIdAndMetatitle(string metatitle, int id)
+        {
+            return db.Products.SingleOrDefault(x => x.MetaTitle == metatitle && x.ID == id);
+        }
+
+        public List<Product> GetListRelateProduct(long id, int top)
+        {
+            var product = db.Products.Find(id);
+            return db.Products.Where(x => x.CategoryID == product.CategoryID && x.ID != id).Take(top).ToList();
+        }
     }
 }

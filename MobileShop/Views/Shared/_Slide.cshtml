@@ -1,0 +1,21 @@
+﻿@model List<Model.EF.Slide>
+<div class="slider-area">
+    <!-- Slider -->
+    <div class="block-slider block-slider4">
+        <ul class="" id="bxslider-home4">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <img src="@item.Image" alt="Slide">
+                    <div class="caption-group">
+                        <h2 class="caption title">
+                            <span class="primary">Miễn Phí <strong>Giao Hàng</strong></span>
+                        </h2>
+                        <a class="caption button-radius"><span class="icon"></span>Shop now</a>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+    <!-- ./Slider -->
+</div> <!-- End slider area -->

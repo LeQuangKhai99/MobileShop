@@ -89,6 +89,60 @@ namespace Model.Dao
                 return false;
             }
         }
+
+        public int Login(string email, string pass)
+        {
+            var result = db.Users.SingleOrDefault(x => x.Email == email);
+            if(result == null)
+            {
+                return 0;
+            }
+            else
+            {
+                if(result.Status == false)
+                {
+                    return 1;
+                }
+                else
+                {
+                    if(result.Password != pass)
+                    {
+                        return 2;
+                    }
+                    else
+                    {
+                        return 3;
+                    }
+                }
+            }
+
+        }
+
+        public User GetUserByEmailAndPassword(string email, string password)
+        {
+            return db.Users.SingleOrDefault(x => x.Email == email && x.Password == password);
+        }
+
+        public string ResetPassword(string email)
+        {
+            var user = db.Users.SingleOrDefault(x => x.Email == email);
+            return user == null ? "" : user.Password;
+        }
+
+        public bool ChangePass(string email, string pass)
+        {
+            try
+            {
+                var user = db.Users.SingleOrDefault(x => x.Email == email);
+                user.Password = pass;
+                db.SaveChanges();
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
     
     }
 

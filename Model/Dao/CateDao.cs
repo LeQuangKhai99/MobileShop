@@ -21,6 +21,11 @@ namespace Model.Dao
             return db.Categories.ToList();
         }
 
+        public List<Category> GetListCateShow()
+        {
+            return db.Categories.Where(x => x.Status == true).OrderByDescending(x => x.CreatedDate).ToList();
+        }
+
         public bool Insert(Category cate)
         {
             try
@@ -90,6 +95,16 @@ namespace Model.Dao
             {
                 return false;
             }
+        }
+
+        public List<Category> GetListCategoryShow()
+        {
+            return db.Categories.Where(x => x.Status == true).OrderByDescending(x => x.CreatedDate).ToList();
+        }
+
+        public Category GetCateByIdAndMetatitle(string metatitle, int id)
+        {
+            return db.Categories.SingleOrDefault(x => x.MetaTitle == metatitle && x.ID == id);
         }
     }
 }

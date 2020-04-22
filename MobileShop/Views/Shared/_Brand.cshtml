@@ -1,0 +1,18 @@
+﻿@model List<Model.EF.Category>
+<div class="brands-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="brand-wrapper">
+                    <div class="brand-list">
+                        @foreach (var item in Model)
+                        {
+                            <img style="width: 270px; height: 120px;" src="@item.Image" alt="@item.Name">
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End brands area -->

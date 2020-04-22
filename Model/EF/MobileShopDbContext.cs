@@ -15,8 +15,6 @@ namespace Model.EF
         public virtual DbSet<About> Abouts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<FeedBack> FeedBacks { get; set; }
-        public virtual DbSet<Menu> Menus { get; set; }
-        public virtual DbSet<MenuType> MenuTypes { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }

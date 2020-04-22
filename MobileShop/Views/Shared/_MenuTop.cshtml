@@ -1,0 +1,29 @@
+﻿<div class="col-md-8">
+    <div class="user-menu">
+        <ul>
+            @{
+                var user = (Model.EF.User)Session[MobileShop.Common.Constant.USER_SESSION];
+            }
+            @if (user != null)
+            {
+                if (user.Level == true)
+                {
+                    <li><a><i class="fa fa-user"></i> Xin chào: @user.Name</a></li>
+                    <li><a href="/Admin"><i class="fa fa-user"></i> Quản lý</a></li>
+                    <li><a href="/dang-xuat"><i class="fa fa-user"></i> Đăng xuất</a></li>
+                }
+                else
+                {
+                    <li><a><i class="fa fa-user"></i> Xin chào: @user.Name</a></li>
+                    <li><a href="/dang-xuat"><i class="fa fa-user"></i> Đăng xuất</a></li>
+                }
+            }
+            else
+            {
+                <li><a href="/dang-ki"><i class="fa fa-user"></i> Đăng kí</a></li>
+                <li><a href="/dang-nhap"><i class="fa fa-user"></i> Đăng nhập</a></li>
+            }
+
+        </ul>
+    </div>
+</div>
