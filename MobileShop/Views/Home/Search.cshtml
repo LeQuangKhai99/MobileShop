@@ -1,6 +1,6 @@
 ﻿@model List<Model.EF.Product>
 @{
-    ViewBag.Title = "Type";
+    ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
     int totalPage = ViewBag.totalPage;
     int page = ViewBag.page;
@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>@ViewBag.cate</h2>
+                    <h2>Search: @ViewBag.search</h2>
                 </div>
             </div>
         </div>
@@ -36,11 +36,11 @@
                         </div>
                         <h2><a href="/chi-tiet/@item.MetaTitle-@item.ID">@item.Name</a></h2>
                         <div class="product-carousel-price">
-                            <ins>@item.PromotionPrice.ToString("N0")</ins> <del>@item.Price.ToString("N0")</del>
+                            <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
                         </div>
 
                         <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/mua-san-pham/@item.MetaTitle-@item.ID">Mua sản phẩm</a>
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             @{
-                                string url = @ViewBag.url + "?page=";
+                                string url = @ViewBag.url + "page=";
                                 int next = page + 1;
                                 int pre = page - 1;
                             }
@@ -92,3 +92,4 @@
         </div>
     </div>
 </div>
+

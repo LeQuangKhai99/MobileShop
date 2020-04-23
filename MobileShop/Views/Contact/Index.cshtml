@@ -1,0 +1,55 @@
+﻿@model Model.EF.FeedBack
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3738.6647793623174!2d106.15042941436847!3d20.437871613063802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ddf0cb627441%3A0xff6d932f868ace83!2zQmlnIEMgTmFtIMSQ4buLbmg!5e0!3m2!1svi!2s!4v1587633644174!5m2!1svi!2s" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+<div style="width: 50%; margin: auto;">
+    <h2 style="text-align: center; margin: 50px 0;">Hãy nhập các thông tin cần liên hệ</h2>
+    @using (Html.BeginForm("Index", "Contact", FormMethod.Post))
+    {
+        if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["Success"]
+            </div>
+
+        }
+        if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["Error"]
+            </div>
+        }
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-6" })
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-6" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-6" })
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-6" })
+            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-6" })
+            @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @rows = "6" })
+            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+        </div>
+
+        <button style="margin-bottom: 50px" type="submit" class="btn btn-primary">Gửi</button>
+    }
+</div>

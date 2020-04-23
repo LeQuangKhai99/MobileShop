@@ -28,11 +28,11 @@
 
         [Display(Name = "Giá gốc")]
         [Required(ErrorMessage = "Hãy nhập giá gốc của sản phẩm")]
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
 
         [Display(Name = "Giá khuyến mãi")]
         [Required(ErrorMessage = "Hãy nhập giá khuyến mãi của sản phẩm")]
-        public decimal? PromotionPrice { get; set; }
+        public decimal PromotionPrice { get; set; }
 
         [StringLength(300)]
         [Display(Name = "Mô Tả Sản Phẩm")]

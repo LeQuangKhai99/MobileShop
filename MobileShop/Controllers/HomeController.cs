@@ -1,4 +1,6 @@
-﻿using Model.Dao;
+﻿using MobileShop.Common;
+using MobileShop.Models;
+using Model.Dao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,5 +48,49 @@ namespace MobileShop.Controllers
             var cate = new CateDao().GetListCategoryShow();
             return View(cate);
         }
+
+        [HttpGet]
+        public ActionResult Search(string search = "", int page = 1, int pageSize = 1)
+        {
+            if (page <= 0)
+            {
+                page = 1;
+            }
+            ViewBag.search = search;
+
+            int total = 0;
+            ViewBag.page = page;
+            ViewBag.url = "?search=" + search + "&";
+            var product = new ProductDao().GetListProductBySearch(search, ref total, page, pageSize);
+            ViewBag.totalPage = (int)Math.Ceiling(((double)total / (double)pageSize));
+            if(ViewBag.totalPage == 0)
+            {
+                ViewBag.totalPage = 1;
+            }
+            return View(product);
+        }
+
+        [ChildActionOnly]
+        public ActionResult _Show()
+        {
+            var cart = (List<CartItem>)Session[Constant.CartSession];
+            int quantity = 0;
+            decimal total = 0;
+            decimal price = 0;
+            if (cart != null)
+            {
+                foreach (var item in cart)
+                {
+                    price = item.product.PromotionPrice != null ? item.product.PromotionPrice : item.product.Price;
+                    quantity += item.Quantity;
+                    total += (item.Quantity * price);
+                }
+
+            }
+            ViewBag.total = total;
+            ViewBag.quantity = quantity;
+            return View();
+        }
     }
+
 }

@@ -51,6 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dao\CateDao.cs" />
+    <Compile Include="Dao\FeedBackDao.cs" />
+    <Compile Include="Dao\OrderDao.cs" />
+    <Compile Include="Dao\OrderDetailDao.cs" />
     <Compile Include="Dao\ProductDao.cs" />
     <Compile Include="Dao\SlideDao.cs" />
     <Compile Include="Dao\UserDao.cs" />

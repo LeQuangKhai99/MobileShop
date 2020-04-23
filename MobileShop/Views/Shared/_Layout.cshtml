@@ -42,10 +42,11 @@
                 @{ Html.RenderAction("_MenuTop", "Home"); }
                 <div class="col-md-4">
                     <div class="header-right">
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                            <button class="btn btn-success" type="submit">Search</button>
-                        </form>
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" }))
+                        {
+                            <input id="search" name="search" class="form-control mr-sm-2" type="search" placeholder="Search">
+                            <button id="btn" class="btn btn-success" type="submit">Search</button>
+                        }
                     </div>
                 </div>
             </div>
@@ -63,7 +64,7 @@
 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        @{ Html.RenderAction("_Show", "Home");}
                     </div>
                 </div>
             </div>
@@ -186,5 +187,15 @@
     <!-- Slider -->
     <script type="text/javascript" src="~/Assets/client/js/bxslider.min.js"></script>
     <script type="text/javascript" src="~/Assets/client/js/script.slider.js"></script>
+    <script>
+        var btn_search = document.getElementById("btn");
+        var inp_search = document.getElementById("search");
+        btn_search.addEventListener("click", function (e) {
+            if (inp_search.value == "") {
+                alert("Hãy nhập nội dung tìm kiếm!");
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

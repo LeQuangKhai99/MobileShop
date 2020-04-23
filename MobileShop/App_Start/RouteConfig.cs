@@ -68,6 +68,47 @@ namespace MobileShop
                 defaults: new { controller = "Detail", action = "Detail", id = UrlParameter.Optional },
                 namespaces: new[] { "MobileShop.Controllers" }
             );
+            routes.MapRoute(
+                name: "Search",
+                url: "tim-kiem",
+                defaults: new { controller = "Home", action = "Search", id = UrlParameter.Optional },
+                namespaces: new[] { "MobileShop.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Contact",
+                url: "lien-he",
+                defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "MobileShop.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "CartIndex",
+                url: "gio-hang",
+                defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "MobileShop.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "CartAdd",
+                url: "mua-san-pham/{metatitle}-{id}",
+                defaults: new { controller = "Cart", action = "AddCart", id = UrlParameter.Optional },
+                namespaces: new[] { "MobileShop.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Delcarts",
+                url: "xoa-san-pham-{id}",
+                defaults: new { controller = "Cart", action = "Delete", id = UrlParameter.Optional },
+                namespaces: new[] { "MobileShop.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Payment",
+                url: "thanh-toan",
+                defaults: new { controller = "Cart", action = "Payment", id = UrlParameter.Optional },
+                namespaces: new[] { "MobileShop.Controllers" }
+            );
 
             routes.MapRoute(
                 name: "Default",

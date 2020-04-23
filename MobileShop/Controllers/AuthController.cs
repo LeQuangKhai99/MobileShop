@@ -54,6 +54,7 @@ namespace MobileShop.Controllers
         public ActionResult Logout()
         {
             Session[Constant.USER_SESSION] = null;
+            Session[Constant.CartSession] = null;
             return Redirect("/");
         }
 

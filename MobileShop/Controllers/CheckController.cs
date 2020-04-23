@@ -9,22 +9,15 @@ using System.Web.Routing;
 
 namespace MobileShop.Controllers
 {
-    public class BaseController : Controller
+    public class CheckController : Controller
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var sess = (User)Session[Constant.USER_SESSION];
-            if(sess == null)
+            if (sess == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Auth", action = "Login", Area = "" }));
-                
-            }
-            if(sess != null)
-            {
-                if (sess.Level == false)
-                {
-                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Auth", action = "Login", Area = "" }));
-                }
+
             }
             base.OnActionExecuting(filterContext);
         }

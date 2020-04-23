@@ -33,7 +33,7 @@
                             <img src="@item.Image" class="recent-thumb" alt="">
                             <h2><a href="/chi-tiet/@item.MetaTitle-@item.ID">@item.Name</a></h2>
                             <div class="product-sidebar-price">
-                                <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
+                                <ins>@item.PromotionPrice.ToString("N0")</ins> <del>@item.Price.ToString("N0")</del>
                             </div>
                         </div>
                     }
@@ -60,17 +60,13 @@
 
                         <div class="col-sm-6">
                             <div class="product-inner">
-                                <h2 class="product-name">@Model.Name</h2>
-                                <div class="product-inner-price">
-                                    <ins>@Model.PromotionPrice.Value.ToString("N0")</ins> <del>@Model.Price.Value.ToString("N0")</del>
-                                </div>
 
-                                <form action="" class="cart">
-                                    <div class="quantity">
-                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                                    </div>
-                                    <button class="add_to_cart_button" type="submit">Add to cart</button>
-                                </form>
+
+                                <in class="product-name">@Model.Name</in>
+                                <div class="product-inner-price">
+                                    <ins>@Model.PromotionPrice.ToString("N0")</ins> <del>@Model.Price.ToString("N0")</del>
+                                </div>
+                                <a style="margin: 20px 0;" class="add_to_cart_button" href="/mua-san-pham/@Model.MetaTitle-@Model.ID">Mua sản phẩm</a>
 
                                 <div class="product-inner-category">
                                     <p>Category: <a>@ViewBag.cate</a></p>
@@ -85,7 +81,7 @@
                                             <h2>Mô tả sản phẩm</h2>
                                             @Model.Description
                                         </div>
-                                       
+
                                     </div>
                                 </div>
 
@@ -103,15 +99,15 @@
                                     <div class="product-f-image">
                                         <img src="@item.Image" alt="">
                                         <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="/chi-tiet/@item.MetaTitle-@item.ID" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                            <a href="/mua-san-pham/@item.MetaTitle-@item.ID" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Mua sản phẩm</a>
+                                            <a href="/chi-tiet/@item.MetaTitle-@item.ID" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
                                         </div>
                                     </div>
 
                                     <h2><a href="">@item.Name</a></h2>
 
                                     <div class="product-carousel-price">
-                                        <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
+                                        <ins>@item.PromotionPrice.ToString("N0")</ins> <del>@item.Price.ToString("N0")</del>
                                     </div>
                                 </div>
                             }

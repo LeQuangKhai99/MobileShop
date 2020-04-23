@@ -9,7 +9,20 @@
 }
 
 @{Html.RenderAction("_Slide", "Home"); }
-
+@{
+    if (TempData["Success"] != null)
+    {
+        <script>
+            alert("Cảm ơn bạn đã liên hệ!");
+        </script>
+    }
+    if (TempData["PayOke"] != null)
+    {
+        <script>
+            alert('Đặt hàng thành công! Vui lòng chờ nhân viên gọi điện xác nhận trong giây lát!');
+        </script>
+    }
+}
 <div class="promo-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
@@ -56,7 +69,7 @@
                                 <div class="product-f-image">
                                     <img src="@item.Image" alt="">
                                     <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Mua sản phẩm</a>
+                                        <a href="/mua-san-pham/@item.MetaTitle-@item.ID" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Mua sản phẩm</a>
                                         <a href="/chi-tiet/@item.MetaTitle-@item.ID" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
                                     </div>
                                 </div>
@@ -64,7 +77,7 @@
                                 <h2><a href="/chi-tiet/@item.MetaTitle-@item.ID">@item.Name</a></h2>
 
                                 <div class="product-carousel-price">
-                                    <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
+                                    <ins>@item.PromotionPrice.ToString("N0")</ins> <del>@item.Price.ToString("N0")</del>
                                 </div>
                             </div>
                         }
@@ -97,7 +110,7 @@
                                 <i class="fa fa-star"></i>
                             </div>
                             <div class="product-wid-price">
-                                <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
+                                <ins>@item.PromotionPrice.ToString("N0")</ins> <del>@item.Price.ToString("N0")</del>
                             </div>
                         </div>
                     }
@@ -119,7 +132,7 @@
                                 <i class="fa fa-star"></i>
                             </div>
                             <div class="product-wid-price">
-                                <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
+                                <ins>@item.PromotionPrice.ToString("N0")</ins> <del>@item.Price.ToString("N0")</del>
                             </div>
                         </div>
                     }
@@ -142,7 +155,7 @@
                                 <i class="fa fa-star"></i>
                             </div>
                             <div class="product-wid-price">
-                                <ins>@item.PromotionPrice.Value.ToString("N0")</ins> <del>@item.Price.Value.ToString("N0")</del>
+                                <ins>@item.PromotionPrice.ToString("N0")</ins> <del>@item.Price.ToString("N0")</del>
                             </div>
                         </div>
                     }

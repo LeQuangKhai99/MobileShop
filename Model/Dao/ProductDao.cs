@@ -148,5 +148,11 @@ namespace Model.Dao
             var product = db.Products.Find(id);
             return db.Products.Where(x => x.CategoryID == product.CategoryID && x.ID != id).Take(top).ToList();
         }
+
+        public List<Product> GetListProductBySearch(string search, ref int total, int pageIndex = 1, int pageSize = 6)
+        {
+            total = db.Products.Where(x => x.Status == true && x.Name.ToLower().Contains(search.ToLower())).Count();
+            return db.Products.Where(x => x.Status == true && x.Name.ToLower().Contains(search.ToLower())).OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        }
     }
 }

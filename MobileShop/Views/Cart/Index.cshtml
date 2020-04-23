@@ -1,0 +1,89 @@
+﻿@model List<MobileShop.Models.CartItem>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div style="width: 80%; margin: 50px 10%;">
+        @if (TempData["Cart"] != null)
+        {
+            <div id="box-alert" class="alert-success alert">
+                @TempData["Cart"]
+            </div>
+        }
+        @if (TempData["NullCart"] != null)
+        {
+            <script>
+                alert('Chưa có sản phẩm nào trong giỏ hàng!');
+            </script>
+        }
+
+        @if (TempData["ErrPay"] != null)
+        {
+            <script>
+                alert('Lỗi thanh toán, vui lòng thử lại!');
+            </script>
+        }
+        @using (Html.BeginForm("Update", "Cart", FormMethod.Post))
+        {
+            <table cellspacing="0" class="shop_table cart">
+                <thead>
+                    <tr>
+                        <th class="product-thumbnail">Hình ảnh</th>
+                        <th class="product-name">Tên sản phẩm</th>
+                        <th class="product-price">Giá sản phẩm</th>
+                        <th class="product-quantity">Số lượng</th>
+                        <th class="product-subtotal">Tổng tiền</th>
+                        <th class="product-remove">Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        decimal price = 0;
+
+                    }
+                    @foreach (var item in Model)
+                    {
+
+                        <tr class="cart_item">
+                            <td class="product-thumbnail">
+                                <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="@item.product.Image">
+                            </td>
+
+                            <td class="product-name">
+                                <a href="single-product.html">@item.product.Name</a>
+                            </td>
+
+                            <td class="product-price">
+                                @if (item.product.PromotionPrice != null)
+                                {
+                                    price = item.product.PromotionPrice;
+                                }
+                                else
+                                {
+                                    price = item.product.Price;
+                                }
+                                @price.ToString("N0")
+                            </td>
+
+                            <td class="product-quantity">
+                                <div class="quantity buttons_added">
+                                    <input type="number" class="input-text qty text" value="@item.Quantity" name="quantity" min="0" max="10" step="1">
+                                </div>
+                            </td>
+                            @{ var total = (int)item.Quantity * price;}
+                            <td class="product-subtotal">
+                                <span class="amount">@total.ToString("N0")</span>
+                            </td>
+                            <td class="product-remove">
+                                <a onclick="return confirm('Bạn có chắc muốn xóa?')" title="Remove this item" class="remove" href="/xoa-san-pham-@item.product.ID">×</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <input type="submit" value="Update Cart" name="update_cart" class="btn btn-danger">
+            <a onclick="return confirm('Xác nhận mua hàng?')" style="float: right;" href="/thanh-toan" name="proceed" class="btn btn-success">Thanh toán</a>
+        }
+    </div>
+
