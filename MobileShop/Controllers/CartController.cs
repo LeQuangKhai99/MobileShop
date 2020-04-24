@@ -135,7 +135,7 @@ namespace MobileShop.Controllers
                 order.ShipName = user.Name;
                 order.ShipPhone = user.Phone;
                 order.ShipAddress = user.Address;
-                order.Status = true;
+                order.Status = false;
                 order.CreatedDate = DateTime.Now;
                 long orderId = orderDao.Insert(order);
                 if (orderId != -1)
@@ -148,7 +148,7 @@ namespace MobileShop.Controllers
 
                         orderDetail.ProductID = item.product.ID;
                         orderDetail.OrderID = orderId;
-                        orderDetail.Price = item.product.Price;
+                        orderDetail.Price = price;
                         orderDetail.Quantity = item.Quantity;
                         if (orderDetailDao.Insert(orderDetail) != true)
                         {
@@ -162,6 +162,7 @@ namespace MobileShop.Controllers
                     TempData["ErrPay"] = "";
                     return Redirect("/gio-hang");
                 }
+                Session[Constant.CartSession] = null;
                 TempData["PayOke"] = "";
                 return Redirect("/");
             }

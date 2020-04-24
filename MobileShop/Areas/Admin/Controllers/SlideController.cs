@@ -75,7 +75,7 @@ namespace MobileShop.Areas.Admin.Controllers
             
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id = 1)
         {
             var dao = new SlideDao();
             var result = dao.Delete(id);

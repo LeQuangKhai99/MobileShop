@@ -29,5 +29,25 @@ namespace Model.Dao
                 return -1;
             }
         }
+
+        public List<Order> GetListOrder()
+        {
+            return db.Orders.OrderBy(x => x.CreatedDate).ToList();
+        }
+
+        public bool Delete(int id = 1)
+        {
+            try
+            {
+                var order = db.Orders.Find(id);
+                db.Orders.Remove(order);
+                db.SaveChanges();
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

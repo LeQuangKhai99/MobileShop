@@ -1,6 +1,7 @@
 ﻿using MobileShop.Common;
 using MobileShop.Models;
 using Model.Dao;
+using Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,6 +90,44 @@ namespace MobileShop.Controllers
             }
             ViewBag.total = total;
             ViewBag.quantity = quantity;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Profile()
+        {
+            var user = (User)Session[Constant.USER_SESSION];
+            if (user == null)
+            {
+                return Redirect("/");
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Profile(User model)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new UserDao();
+                model.Status = true;
+                var user = (User)Session[Constant.USER_SESSION];
+                if(user == null)
+                {
+                    return Redirect("/");
+                }
+                model.Level = user.Level;
+                if (dao.Update(model))
+                {
+                    Session[Constant.USER_SESSION] = model;
+                    TempData["Update"] = "";
+                    return Redirect("/");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Cập nhật thất bại, vui lòng thử lại!");
+                }
+            }
             return View();
         }
     }

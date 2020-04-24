@@ -1,4 +1,4 @@
-﻿@model List<Model.EF.User>
+﻿@model List<Model.EF.Order>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -26,42 +26,35 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
+                        <th>ID khách hàng</th>
+                        <th>Tên khách hàng</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
                         <th>Status</th>
-                        <th>Level</th>
                         <th>Created Date</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @if (Model != null)
+                    @foreach (var item in Model)
                     {
-                        foreach (var item in Model)
-                        {
                     <tr>
                         <td>@item.ID</td>
-                        <td>@item.Name</td>
-                        <td>@item.Email</td>
-                        <td>@item.Phone</td>
-                        <td>@item.Address</td>
-                        <td><a href="#" class="btn-stt btn btn-success" data-id="@item.ID">@(item.Status == true ? "Kích hoạt" : "Khóa")</a></td>
-                        <td>@(item.Level == true ? "Admin" : "User")</td>
+                        <td>@item.IDCustomer</td>
+                        <td>@item.ShipName</td>
+                        <td>@item.ShipPhone</td>
+                        <td>@item.ShipAddress</td>
+                        <td>@(item.Status == true ? "Đã giao" : "Chưa giao")</td>
                         <td>@item.CreatedDate</td>
-                        <td style="display: flex">
-                            <a style="margin-right: 10px" href="/Admin/User/Update/@item.ID" type="button" class="btn btn-success">Cập Nhật</a>
-                            <a onclick="return confirm('Bạn có chắc muốn xóa?')" href="/Admin/User/Delete/@item.ID" type="button" class="btn btn-danger">Xóa</a>
+                        <td>
+                            <a onclick="return confirm('Bạn có chắc muốn xóa?')" href="/Admin/Order/Delete/@item.ID" type="button" class="btn btn-danger">Xóa</a>
                         </td>
                     </tr>
-                        }
                     }
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
 

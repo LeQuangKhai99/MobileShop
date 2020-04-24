@@ -85,7 +85,7 @@ namespace MobileShop.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id = 1)
         {
             var dao = new UserDao();
             if (dao.Delete(id))
@@ -130,6 +130,17 @@ namespace MobileShop.Areas.Admin.Controllers
                 }
             }
             return View();
+        }
+        
+        [HttpPost]
+        public JsonResult ChangeStatus(int id)
+        {
+            var dao = new UserDao();
+            var result = dao.ChangeStatus(id);
+            return Json(new
+            {
+                status = result
+            });
         }
     }
 }

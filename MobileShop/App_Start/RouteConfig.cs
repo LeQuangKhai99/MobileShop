@@ -111,6 +111,13 @@ namespace MobileShop
             );
 
             routes.MapRoute(
+                name: "Profile",
+                url: "cap-nhat-thong-tin-ca-nhan",
+                defaults: new { controller = "Home", action = "Profile", id = UrlParameter.Optional },
+                namespaces: new[] { "MobileShop.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },

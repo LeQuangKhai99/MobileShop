@@ -29,5 +29,25 @@ namespace Model.Dao
                 return false;
             }
         }
+
+        public List<FeedBack> GetListFeedBack()
+        {
+            return db.FeedBacks.OrderByDescending(x => x.CreatedDate).ToList();
+        }
+
+        public bool Delete(int id)
+        {
+            try
+            {
+                var fb = db.FeedBacks.Find(id);
+                db.FeedBacks.Remove(fb);
+                db.SaveChanges();
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

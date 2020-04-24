@@ -24,7 +24,7 @@ namespace MobileShop.Controllers
             {
                 var dao = new FeedBackDao();
                 model.CreatedDate = DateTime.Now;
-                model.Status = true;
+                model.Status = false;
                 if (dao.Insert(model))
                 {
                     TempData["Success"] = "Cảm ơn bạn đã liên hệ!";

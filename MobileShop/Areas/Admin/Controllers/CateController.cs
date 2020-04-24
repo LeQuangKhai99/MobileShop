@@ -199,7 +199,7 @@ namespace MobileShop.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id =1)
         {
             bool result = new CateDao().Delete(id);
             if (result)

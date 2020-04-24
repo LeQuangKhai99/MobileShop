@@ -92,11 +92,12 @@ namespace MobileShop.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id = 1)
         {
             bool result = new ProductDao().Delete(id);
             if (result)
             {
+                new OrderDetailDao().DeleteAllByProductId(id);
                 TempData["Success"] = "Xóa sản phẩm thành công!";
             }
             else
